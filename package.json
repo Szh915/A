@@ -1,0 +1,18 @@
+{
+  "name": "pdfly",
+  "version": "1.0.0",
+  "description": "在线 PDF 工具箱 — 合并、拆分、旋转、加密 PDF",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "pdf-lib": "^1.17.1",
+    "stripe": "^17.6.0"
+  }
+}

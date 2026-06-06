@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加密 PDF — PDFly 在线工具</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">📄 PDFly</a>
+      <div class="nav-links">
+        <a href="/">所有工具</a>
+        <a href="/pricing.html" class="btn-upgrade">升级 Pro</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container tool-page">
+    <div id="usage-banner"></div>
+    <h1>🔒 加密 PDF</h1>
+    <p class="desc">为 PDF 添加密码保护，限制打印和修改权限。</p>
+
+    <form id="protect-form">
+      <div id="upload-zone" class="upload-zone">
+        <div class="icon">📄</div>
+        <p>点击上传或拖拽 PDF 文件到此处</p>
+        <p class="hint">支持 .pdf，最大 50MB</p>
+      </div>
+      <input type="file" id="file-input" accept=".pdf,application/pdf" style="display:none">
+
+      <div class="form-group" style="margin-top:20px;">
+        <label for="password">设置密码</label>
+        <input type="password" id="password" name="password" placeholder="输入密码" required minlength="4">
+      </div>
+
+      <div id="alert" class="alert"></div>
+      <div id="progress-bar" class="progress-bar"><div class="fill"></div></div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">
+        🔒 开始加密
+      </button>
+    </form>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    setupSingleUpload('upload-zone', 'file-input');
+    submitForm('protect-form', '/api/protect', { filename: 'protected.pdf' });
+  </script>
+</body>
+</html>

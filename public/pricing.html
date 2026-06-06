@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定价 — PDFly Pro</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">📄 PDFly</a>
+      <div class="nav-links">
+        <a href="/">所有工具</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>简单透明的定价</h1>
+      <p>免费用户每天可处理 3 次。升级 Pro 无限使用所有工具。</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>免费</h3>
+        <div class="price">¥0</div>
+        <p class="period">永久免费</p>
+        <ul>
+          <li>每天 3 次免费处理</li>
+          <li>文件上限 50MB</li>
+          <li>所有核心工具可用</li>
+          <li>无需注册</li>
+        </ul>
+        <a href="/" class="btn btn-outline btn-block">开始使用</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <h3>Pro</h3>
+        <div class="price">¥19 <span>/月</span></div>
+        <p class="period">或 ¥199/年（省 2 个月）</p>
+        <ul>
+          <li>✅ 无限次处理</li>
+          <li>✅ 文件上限 100MB</li>
+          <li>✅ 所有工具不限量</li>
+          <li>✅ 优先处理</li>
+          <li>✅ 批量处理</li>
+        </ul>
+        <button class="btn btn-primary btn-block btn-lg" onclick="checkout()">
+          升级 Pro
+        </button>
+      </div>
+
+      <div class="pricing-card">
+        <h3>团队</h3>
+        <div class="price">¥49 <span>/月</span></div>
+        <p class="period">最多 5 个成员</p>
+        <ul>
+          <li>✅ 包含 Pro 所有功能</li>
+          <li>✅ 5 个独立账户</li>
+          <li>✅ 团队管理控制台</li>
+          <li>✅ 专属支持</li>
+        </ul>
+        <a href="mailto:support@pdfly.dev" class="btn btn-outline btn-block">联系我们</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    async function checkout() {
+      try {
+        const res = await fetch('/api/create-checkout', { method: 'POST' });
+        const data = await res.json();
+        if (data.url) window.location.href = data.url;
+        else alert('支付服务暂不可用，请稍后再试');
+      } catch {
+        alert('支付服务暂不可用');
+      }
+    }
+  </script>
+</body>
+</html>

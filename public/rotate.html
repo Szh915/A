@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旋转 PDF — PDFly 在线工具</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">📄 PDFly</a>
+      <div class="nav-links">
+        <a href="/">所有工具</a>
+        <a href="/pricing.html" class="btn-upgrade">升级 Pro</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container tool-page">
+    <div id="usage-banner"></div>
+    <h1>🔄 旋转 PDF</h1>
+    <p class="desc">旋转 PDF 页面的方向。支持 90°、180°、270°。</p>
+
+    <form id="rotate-form">
+      <div id="upload-zone" class="upload-zone">
+        <div class="icon">📄</div>
+        <p>点击上传或拖拽 PDF 文件到此处</p>
+        <p class="hint">支持 .pdf，最大 50MB</p>
+      </div>
+      <input type="file" id="file-input" accept=".pdf,application/pdf" style="display:none">
+
+      <div class="form-group" style="margin-top:20px;">
+        <label for="degrees">旋转角度</label>
+        <select id="degrees" name="degrees">
+          <option value="90">顺时针 90°</option>
+          <option value="180">180°（上下颠倒）</option>
+          <option value="270">逆时针 90°（顺时针 270°）</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pages">应用页面</label>
+        <input type="text" id="pages" name="pages" placeholder='输入 "all" 或 "1,3,5"' value="all">
+        <p style="font-size:.8rem;color:var(--gray-400);margin-top:4px;">输入 <code>all</code> 旋转所有页面，或指定页码如 <code>1,3,5</code></p>
+      </div>
+
+      <div id="alert" class="alert"></div>
+      <div id="progress-bar" class="progress-bar"><div class="fill"></div></div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">
+        🔄 开始旋转
+      </button>
+    </form>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    setupSingleUpload('upload-zone', 'file-input');
+    submitForm('rotate-form', '/api/rotate', { filename: 'rotated.pdf' });
+  </script>
+</body>
+</html>
